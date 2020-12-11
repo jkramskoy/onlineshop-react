@@ -56,7 +56,7 @@ class CreateProduct extends Component {
           }
         ></input>
         <br />
-        <button onClick={this.postDataHandler}>Add Menu Item</button>
+        <button onClick={this.postDataHandler}>Add New Product</button>
         <br /> <br /> <br />
       </div>
     );
