@@ -32,6 +32,7 @@ class Shop extends Component {
       return (
         <Product
           key={pr.id}
+          id={pr.id}
           name={pr.name}
           price={pr.price}
           photoPath={pr.photoPath}
