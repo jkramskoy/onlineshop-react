@@ -1,52 +1,60 @@
 import { React, Component } from "react";
-import Product from "../../components/Products/Product";
-import axios from "axios";
-import CreateProduct from "../../components/Products/CreateProduct";
+import { Route, Link, Switch } from "react-router-dom";
+import Products from "../Products/Products";
+import Login from "../Login/Login";
+import { Menu } from "semantic-ui-react";
 
 class Shop extends Component {
-  //connect with API
-  state = {
-    products: [],
-    url: "https://localhost:5001/Product/",
-  };
+  state = { activeItem: "home" };
 
-  //take data from database and store
-  componentDidMount() {
-    //console.log("componentDidMount");
-    axios.get(this.state.url).then((response) => {
-      //console.log(response);
-      this.setState({ products: response.data });
-    });
-  }
-
-  //test request to API go through all objects and get by id product
-  getProductByIdHandler = (id) => {
-    axios.get(this.state.url + id).then((response) => {
-      console.log(response);
-    });
-  };
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
-    //convert data from JASON file
-    const productList = this.state.products.map((pr) => {
-      return (
-        <Product
-          key={pr.id}
-          id={pr.id}
-          name={pr.name}
-          price={pr.price}
-          photoPath={pr.photoPath}
-          description={pr.description}
-          getByIdClicked={() => this.getProductByIdHandler(pr.id)}
-        />
-      );
-    });
-
     return (
       <div>
-        This is a Shop
-        {productList}
-        <CreateProduct />
+        <Menu pointing secondary>
+          <Menu.Item
+            as={Link}
+            to="/"
+            name="home"
+            active={this.state.activeItem === "home"}
+            onClick={this.handleItemClick}
+          >
+            Products
+          </Menu.Item>
+          <Menu.Item
+            as={Link}
+            to="/login"
+            name="login"
+            active={this.state.activeItem === "login"}
+            onClick={this.handleItemClick}
+          >
+            Login
+          </Menu.Item>
+        </Menu>
+
+        {/* <header>
+              <nav>
+                  <ul>
+                      <li>
+                          <a href="/">Menu Items</a>
+                          <Link to="/">Menu Items</Link>
+                      </li>
+                      <li>
+                          <a href="/login">Login</a>
+                          <Link to="/login">Login</Link>
+                      </li>
+                  </ul>
+              </nav>
+          </header> */}
+
+        <h2>This is a Shop</h2>
+        <Switch>
+          <Route path="/" exact component={Products} />
+          <Route path="/login" exact component={Login} />
+          <Route render={() => <h3>Not Found</h3>} />
+          {/* {this.state.auth ? <Route path="/secret" component={ccdd} /> : null } */}
+        </Switch>
       </div>
     );
   }

@@ -1,13 +1,16 @@
 import { React, Component } from "react";
 import "./App.css";
 import Shop from "./containers/Shop/Shop";
+import { BrowserRouter } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Shop />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Shop />
+        </div>
+      </BrowserRouter>
     );
   }
 }

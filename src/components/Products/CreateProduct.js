@@ -2,6 +2,7 @@ import { React, Component } from "react";
 import axios from "axios";
 
 class CreateProduct extends Component {
+  //connect with API
   state = {
     name: "",
     price: 0,
@@ -10,6 +11,7 @@ class CreateProduct extends Component {
     url: "https://localhost:5001/Product/",
   };
 
+  //take data from database and store
   postDataHandler = () => {
     const data = {
       name: this.state.name,
