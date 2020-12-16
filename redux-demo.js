@@ -1,3 +1,4 @@
+//tamplate,example file for using Redux library
 const redux = require("redux");
 const create = redux.createStore;
 

@@ -12,6 +12,7 @@ class Shop extends Component {
 
   render() {
     return (
+      //create buttons in navigation bar
       <div>
         <Menu pointing inverted fixed>
           <Menu.Item
