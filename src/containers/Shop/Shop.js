@@ -12,7 +12,7 @@ class Shop extends Component {
   render() {
     return (
       <div>
-        <Menu pointing secondary>
+        <Menu pointing inverted fixed>
           <Menu.Item
             as={Link}
             to="/"
