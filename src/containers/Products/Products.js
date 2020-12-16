@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Product from "../../components/Products/Product";
 import axios from "axios";
 import CreateProduct from "../../components/Products/CreateProduct";
+import { Header, Segment } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 
 class Products extends Component {
   //connect with API
@@ -38,6 +40,22 @@ class Products extends Component {
     console.log(this.state.cartItems);
   };
 
+  orderNowHandler = () => {
+    const queryParams = [];
+
+    for (let i of this.state.cartItems) {
+      if (i !== null) {
+        queryParams.push(i.id + "=" + i.quantity);
+      }
+    }
+    const queryStr = queryParams.join("&");
+
+    this.props.history.push({
+      pathname: "/cart",
+      search: "?" + queryStr,
+    });
+  };
+
   render() {
     //convert data from JASON file
     const productList = this.state.products.map((pr) => {
@@ -57,8 +75,26 @@ class Products extends Component {
 
     return (
       <div>
+        <Segment clearing>
+          <Header as="h2" dividing floated="left" inverted color="green">
+            Please select the products you want ….
+          </Header>
+        </Segment>
         {productList}
         <CreateProduct />
+
+        <div
+          style={{
+            textAlign: "right",
+            top: "80px",
+            right: "60px",
+            position: "fixed",
+          }}
+        >
+          <Button onClick={this.orderNowHandler} inverted color="green">
+            ORDER NOW!
+          </Button>
+        </div>
       </div>
     );
   }

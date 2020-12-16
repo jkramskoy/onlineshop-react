@@ -3,11 +3,12 @@ import { React, Component } from "react";
 class Product extends Component {
   state = {
     qty: 0,
+    selected: false,
   };
 
   addToCartClicked = (id, q) => {
     //console.log(id + " " + q);
-
+    this.setState({ selected: true });
     this.props.addToCartClicked(id, q);
   };
 
@@ -27,11 +28,15 @@ class Product extends Component {
           onChange={(event) => {
             this.setState({ qty: event.target.value });
           }}
+          disabled={this.state.selected}
         />
+        {this.state.selected ? <span> added to Card</span> : null}
+        <br />
         <button
           onClick={() => {
             this.addToCartClicked(this.props.id, this.state.qty);
           }}
+          disabled={this.state.selected}
         >
           Add to Cart
         </button>

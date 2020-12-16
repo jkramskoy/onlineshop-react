@@ -2,6 +2,7 @@ import { React, Component } from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import Products from "../Products/Products";
 import Login from "../Login/Login";
+import Cart from "../Cart/Cart";
 import { Menu } from "semantic-ui-react";
 
 class Shop extends Component {
@@ -33,25 +34,10 @@ class Shop extends Component {
           </Menu.Item>
         </Menu>
 
-        {/* <header>
-              <nav>
-                  <ul>
-                      <li>
-                          <a href="/">Menu Items</a>
-                          <Link to="/">Menu Items</Link>
-                      </li>
-                      <li>
-                          <a href="/login">Login</a>
-                          <Link to="/login">Login</Link>
-                      </li>
-                  </ul>
-              </nav>
-          </header> */}
-
-        <h2>This is a Shop</h2>
         <Switch>
           <Route path="/" exact component={Products} />
           <Route path="/login" exact component={Login} />
+          <Route path="/cart" exact component={Cart} />
           <Route render={() => <h3>Not Found</h3>} />
           {/* {this.state.auth ? <Route path="/secret" component={ccdd} /> : null } */}
         </Switch>
