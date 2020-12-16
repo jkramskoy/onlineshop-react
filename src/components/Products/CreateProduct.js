@@ -44,7 +44,8 @@ class CreateProduct extends Component {
         <br />
         Photo: <br />
         <input
-          type="file"
+          type="text"
+          //type="file"
           value={this.state.photoPath}
           onChange={(event) => this.setState({ photoPath: event.target.value })}
         ></input>

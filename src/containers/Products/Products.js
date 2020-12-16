@@ -81,7 +81,7 @@ class Products extends Component {
           </Header>
         </Segment>
         {productList}
-        <CreateProduct />
+        {/* <CreateProduct /> */}
 
         <div
           style={{
