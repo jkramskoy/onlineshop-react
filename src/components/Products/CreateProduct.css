@@ -1,0 +1,44 @@
+.create-card {
+  background-color: #00b5ad;
+  box-shadow: 3px 3px 8px #888888;
+  border-radius: 4px;
+  width: 800px;
+  height: 600px;
+  min-width: 300px;
+  text-align: center;
+}
+
+.create-main {
+  height: 100vh;
+  background-color: #eaeaea;
+}
+
+.create-input-field {
+  font-size: 22px;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  height: 50px;
+  width: 90%;
+}
+
+.create-content {
+  left: 50%;
+  padding: 10vmin;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* .panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  color: inherit;
+} */
+.create-text {
+  font-size: 18px;
+  text-align: left;
+  margin-left: 40px;
+  margin-bottom: 0;
+}
