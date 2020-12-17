@@ -16,18 +16,14 @@
   background-color: #ffffff;
   box-shadow: 3px 3px 8px #888888;
   border-radius: 4px;
-  width: 400px;
+  width: 600px;
+  height: 400px;
   min-width: 300px;
   text-align: center;
 }
-.auth-logo {
-  width: 118px;
-  margin-bottom: -10px;
-}
-.auth-form {
-  margin-top: 35px;
-}
+
 .auth-input-field {
-  font-size: 18px;
+  font-size: 22px;
   margin-bottom: 25px;
+  margin-top: 30px;
 }

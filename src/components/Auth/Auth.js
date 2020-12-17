@@ -25,34 +25,43 @@ class Auth extends Component {
 
     return (
       <div>
-        <Form.Input
-          fluid
-          icon="user"
-          iconPosition="left"
-          placeholder="E-mail address"
-          className="auth-input-field"
-          value={data.email}
-          onChange={this.onChange}
-        />
-        <Form.Input
-          fluid
-          icon="lock"
-          iconPosition="left"
-          placeholder="Password"
-          type="password"
-          className="auth-input-field"
-          value={data.password}
-          onChange={this.onChange}
-        />
-        <Link to="/dashboard">
-          <Button color="teal" fluid size="huge">
-            Sign up
-          </Button>
-        </Link>
+        <div className="auth-main">
+          <div class="auth-content">
+            <div className="auth-card">
+              <Form.Input
+                fluid
+                icon="user"
+                iconPosition="left"
+                placeholder="E-mail address"
+                className="auth-input-field"
+                value={data.email}
+                onChange={this.onChange}
+              />
+              <Form.Input
+                fluid
+                icon="lock"
+                iconPosition="left"
+                placeholder="Password"
+                type="password"
+                className="auth-input-field"
+                value={data.password}
+                onChange={this.onChange}
+              />
 
-        <Message size="big">
-          <Link to="/login">Already Registered?</Link>
-        </Message>
+              <div className="auth-form">
+                <Link to="/dashboard" size="big">
+                  <Button color="teal" fluid size="huge" className="auth-form">
+                    Sign up
+                  </Button>
+                </Link>
+
+                <Message size="big">
+                  <Link to="/login">Already Registered?</Link>
+                </Message>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
