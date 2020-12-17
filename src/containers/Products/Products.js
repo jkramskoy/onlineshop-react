@@ -76,7 +76,13 @@ class Products extends Component {
     return (
       <div>
         <Segment clearing>
-          <Header as="h2" dividing floated="left" inverted color="green">
+          <Header
+            as="h2"
+            dividing
+            floated="left"
+            color="black"
+            background-color="teal"
+          >
             Please select the products you want ….
           </Header>
         </Segment>
@@ -91,7 +97,7 @@ class Products extends Component {
             position: "fixed",
           }}
         >
-          <Button onClick={this.orderNowHandler} inverted color="green">
+          <Button onClick={this.orderNowHandler} color="teal">
             ORDER NOW!
           </Button>
         </div>
