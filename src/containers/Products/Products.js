@@ -10,7 +10,7 @@ class Products extends Component {
   state = {
     products: [],
     url: "https://localhost:5001/Product/",
-    cartItems: [],
+    cartProducts: [],
   };
 
   //take data from database and store
@@ -29,23 +29,23 @@ class Products extends Component {
     });
   };
 
-  addToCartHandler = (id, q) => {
+  addToCartHandler = (id, q,name,price) => {
     // console.log(" parent:  " + id + " " + q);
 
-    let ci = this.state.cartItems;
-    ci.push({ id: id, quantity: +q });
+    let cp = this.state.cartProducts;
+    cp.push({ id: id, quantity: +q,name:name,price:+price });
 
-    this.setState({ cartItems: ci });
+    this.setState({ cartProducts: cp });
 
-    console.log(this.state.cartItems);
+    console.log(this.state.cartProducts);
   };
 
   orderNowHandler = () => {
     const queryParams = [];
 
-    for (let i of this.state.cartItems) {
+    for (let i of this.state.cartProducts) {
       if (i !== null) {
-        queryParams.push(i.id + "=" + i.quantity);
+        queryParams.push(i.id + "=" + i.quantity + "|" + i.name + "|" + i.price);
       }
     }
     const queryStr = queryParams.join("&");

@@ -6,22 +6,36 @@ import { connect } from "react-redux";
 class Cart extends Component {
   state = {
     cartProducts: [],
+    products: [],
+        url: "https://localhost:5001/MenuItem/",
+        totalPrice: 0
   };
 
   componentDidMount = () => {
     const query = new URLSearchParams(this.props.location.search);
     const items = [];
+    const arr = [];
 
     for (let param of query.entries()) {
-      items.push({ id: param[0], qty: param[1] });
+      items.push({ id: param[0], qty: param[1]});
+        let cart =  param[1].split("|");
+        arr.push({ id: param[0], name: cart[1], price: cart[2], qty: cart[0]
+        });
     }
-    console.log(items);
+    //console.log(items);
+    this.setState({ products: arr } );
 
     this.setState({ cartProducts: items });
+    console.log("products: ", this.state.products);
+
     //store cart products in the redux state
     this.props.onStoreCartProducts(items);
     console.log("Redux Cart Products: ", this.props.cartProducts);
   };
+
+  getProductByIdHandler = (id) => {
+        
+  }
 
   cancelHandler = () => {
     this.props.history.goBack();
@@ -40,10 +54,10 @@ class Cart extends Component {
   // }
 
   render() {
-    const products = this.props.cartProducts.map((pr) => {
+    const products = this.state.products.map((pr) => {
       return (
         <li key={pr.id}>
-          {pr.id} : {pr.qty}{" "}
+          {pr.name}: {pr.qty}  -{pr.price}
           <button onClick={() => this.props.onDeleteCartProduct(pr.id)}>
             Remove
           </button>

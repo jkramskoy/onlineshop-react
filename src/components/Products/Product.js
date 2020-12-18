@@ -6,10 +6,10 @@ class Product extends Component {
     selected: false,
   };
 
-  addToCartClicked = (id, q) => {
+  addToCartClicked = (id, q,name,price) => {
     //console.log(id + " " + q);
     this.setState({ selected: true });
-    this.props.addToCartClicked(id, q);
+    this.props.addToCartClicked(id, q,name,price);
   };
 
   render() {
@@ -34,7 +34,7 @@ class Product extends Component {
         <br />
         <button
           onClick={() => {
-            this.addToCartClicked(this.props.id, this.state.qty);
+            this.addToCartClicked(this.props.id, this.state.qty,this.props.name,this.props.price);
           }}
           disabled={this.state.selected}
         >
