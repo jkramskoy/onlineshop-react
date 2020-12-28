@@ -6,19 +6,46 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Auth.css";
 
+
+
 class Auth extends Component {
   state = {
     data: {
-      email: "",
+      userName:"",
       password: "",
     },
     errors: {},
   };
 
   onSubmit = () => {
-    console.log("Submit");
+    //console.log("Submit");
+    const errors = this.validate(this.state.data);
+        this.setState({ errors }); 
+
+        if(Object.keys(errors).length === 0) {
+          
+            this.props.submit(this.state.data)
+            .catch(err => this.setState({errors: err.data}));
+        }
+
+
   };
-  onChange = () => {};
+
+  onChange = e => this.setState({
+        data: { ...this.state.data, [e.target.name]: e.target.value }
+  });
+
+    validate = data => {
+
+      const errors = {};
+      //debugger;
+      if(!data.password) errors.password = "can't be empty";
+      // 
+      if(!data.userName) errors.userName = "can't be empty"
+      
+      return errors;
+    }
+
 
   render() {
     const { data, errors } = this.state;
@@ -28,14 +55,17 @@ class Auth extends Component {
         <div className="auth-main">
           <div class="auth-content">
             <div className="auth-card">
-              <Form.Input
+            <Form onSubmit={this.onSubmit}>
+
+              <Form.Input 
                 fluid
                 icon="user"
                 iconPosition="left"
-                placeholder="E-mail address"
+                placeholder="User Name"
                 className="auth-input-field"
                 value={data.email}
                 onChange={this.onChange}
+                error={!!errors.userName}
               />
               <Form.Input
                 fluid
@@ -46,6 +76,7 @@ class Auth extends Component {
                 className="auth-input-field"
                 value={data.password}
                 onChange={this.onChange}
+                error={!!errors.password}
               />
 
               <div className="auth-form">
@@ -59,6 +90,7 @@ class Auth extends Component {
                   <Link to="/login">Already Registered?</Link>
                 </Message>
               </div>
+              </Form>
             </div>
           </div>
         </div>

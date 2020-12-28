@@ -4,6 +4,8 @@ import axios from "axios";
 import CreateProduct from "../../components/Products/CreateProduct";
 import { Header, Segment } from "semantic-ui-react";
 import { Button } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
+
 
 class Products extends Component {
   //connect with API
@@ -86,7 +88,9 @@ class Products extends Component {
             Please select the products you want ….
           </Header>
         </Segment>
+        <Card.Group>
         {productList}
+        </Card.Group>
         {/* <CreateProduct /> */}
 
         <div
@@ -95,6 +99,7 @@ class Products extends Component {
             top: "80px",
             right: "60px",
             position: "fixed",
+            
           }}
         >
           <Button onClick={this.orderNowHandler} color="teal">
