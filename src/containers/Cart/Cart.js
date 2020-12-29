@@ -7,7 +7,7 @@ class Cart extends Component {
   state = {
     cartProducts: [],
     products: [],
-        url: "https://localhost:5001/MenuItem/",
+        url: "https://localhost:5001/Product/",
         totalPrice: 0
   };
 

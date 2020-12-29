@@ -7,9 +7,20 @@ import "semantic-ui-css/semantic.min.css";
 //redux imports
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import reducer from "./store/Reducer";
 
-const store = createStore(reducer);
+// redux-thunk
+// npm install --save redux-thunk
+import thunk from 'redux-thunk';
+import { applyMiddleware } from 'redux';
+// npm install --save redux-devtools-extension
+import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from './store/reducers/rootReducer'
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
+
 
 ReactDOM.render(
   

@@ -34,6 +34,8 @@ class Product extends Component {
             type="number"
             min="1"
             max="20"
+            value={this.state.qty}
+            onKeyDown={(e) => { e.preventDefault();}}
             onChange={(event) => {
               this.setState({ qty: event.target.value });
             }}

@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 
-import { Form, Button, Message } from "semantic-ui-react";
-import validator from "validator";
+import { Form, Button, Message,Input } from "semantic-ui-react";
+import Validator from "validator";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Auth.css";
+import InlineError from '../../messages/InlineError';
+import {login} from "../../store/action/auth";
+
 
 
 
@@ -25,7 +28,8 @@ class Auth extends Component {
         if(Object.keys(errors).length === 0) {
           
             this.props.submit(this.state.data)
-            .catch(err => this.setState({errors: err.data}));
+            .catch(err => this.setState({errors: 'err.response.data.error'})
+            );
         }
 
 
@@ -39,10 +43,8 @@ class Auth extends Component {
 
       const errors = {};
       //debugger;
-      if(!data.password) errors.password = "can't be empty";
-      // 
-      if(!data.userName) errors.userName = "can't be empty"
-      
+      if(!data.userName) errors.userName = "Can't be blank";
+      if(!data.password) errors.password = "Can't be blank";
       return errors;
     }
 
@@ -56,39 +58,35 @@ class Auth extends Component {
           <div class="auth-content">
             <div className="auth-card">
             <Form onSubmit={this.onSubmit}>
+              {errors.title && (
+                          <Message negative>
+                              <Message.Header>Something went wrong</Message.Header>
+                              <p>{errors.title}</p>
+                          </Message>
+                      )}
 
-              <Form.Input 
-                fluid
-                icon="user"
-                iconPosition="left"
-                placeholder="User Name"
-                className="auth-input-field"
-                value={data.email}
-                onChange={this.onChange}
-                error={!!errors.userName}
-              />
-              <Form.Input
-                fluid
-                icon="lock"
-                iconPosition="left"
-                placeholder="Password"
-                type="password"
-                className="auth-input-field"
-                value={data.password}
-                onChange={this.onChange}
-                error={!!errors.password}
-              />
+              <Form.Field error={!!errors.userName} >
+                        
+                        <Input fluid type="userName" id="userName" name="userName" icon="user" iconPosition="left" placeholder="User Name"      className="auth-input-field"
+                            value={data.userName}
+                            onChange={this.onChange} />
+                        {errors.userName && <InlineError text={errors.userName} />}
+                    </Form.Field>
+
+                    <Form.Field error={!!errors.password} >
+                        
+                        <Input fluid type="password" id="password" name="password" icon="lock" iconPosition="left" placeholder="Password"      className="auth-input-field"
+                            value={data.password}
+                            onChange={this.onChange} />
+                        {errors.password && <InlineError text={errors.password} />}
+                    </Form.Field>
 
               <div className="auth-form">
-                <Link to="/dashboard" size="big">
-                  <Button color="teal" fluid size="huge" className="auth-form">
+                
+                <Button color="teal" fluid size="huge" className="auth-form">
                     Sign up
                   </Button>
-                </Link>
 
-                <Message size="big">
-                  <Link to="/login">Already Registered?</Link>
-                </Message>
               </div>
               </Form>
             </div>

@@ -1,6 +1,6 @@
 const initialState = {
   cartProducts: [],
-  isAuth: false,
+  // isAuth: false,
 };
 
 //creating  Store -global cart where we will hold data
