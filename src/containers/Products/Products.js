@@ -3,8 +3,8 @@ import Product from "../../components/Products/Product";
 import axios from "axios";
 import CreateProduct from "../../components/Products/CreateProduct";
 import { Header, Segment } from "semantic-ui-react";
-import { Button } from "semantic-ui-react";
-import { Card } from "semantic-ui-react";
+import { Button, Card } from "semantic-ui-react";
+
 
 
 class Products extends Component {
