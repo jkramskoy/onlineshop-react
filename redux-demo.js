@@ -26,9 +26,9 @@ const rootReducer = (state = initialState, action) => {
 
 const store = create(rootReducer);
 
-console.log(store.getState());
+//console.log(store.getState());
 
 store.dispatch({ type: "INC_COUNTER" });
 store.dispatch({ type: "ADD_COUNTER", value: 100 });
 
-console.log(store.getState());
+//console.log(store.getState());

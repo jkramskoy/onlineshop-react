@@ -18,18 +18,18 @@ class Products extends Component {
   //take data from database and store
   componentDidMount() {
     //console.log("componentDidMount");
-    axios.get(this.state.url).then((response) => {
+    axios.get(this.state.url).then(response => {
       //console.log(response);
-      this.setState({ products: response.data });
+      this.setState({ products: response.data })
     });
   }
 
   //test request to API go through all objects and get by id product
   getProductByIdHandler = (id) => {
-    axios.get(this.state.url + id).then((response) => {
-      console.log(response);
-    });
-  };
+    axios.get(this.state.url + id).then(response => {
+      //console.log(response);
+    })
+  }
 
   addToCartHandler = (id, q,name,price) => {
     // console.log(" parent:  " + id + " " + q);
@@ -39,7 +39,7 @@ class Products extends Component {
 
     this.setState({ cartProducts: cp });
 
-    console.log(this.state.cartProducts);
+    //console.log(this.state.cartProducts);
   };
 
   orderNowHandler = () => {

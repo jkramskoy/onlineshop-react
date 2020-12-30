@@ -22,7 +22,7 @@ class CreateProduct extends Component {
       description: this.state.description,
     };
     axios.post(this.state.url, data).then((response) => {
-      console.log(response);
+      //console.log(response);
     });
   };
 
