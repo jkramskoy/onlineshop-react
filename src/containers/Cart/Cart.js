@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Grid, Button } from 'semantic-ui-react'
 
 //connect redux to the page:
 import { connect } from "react-redux";
@@ -51,24 +52,63 @@ class Cart extends Component {
     alert("Thank you for your payment!!");
   };
 
+  getTotal = () =>{
+    let result=0;
+    this.state.products.forEach(pr=>{
+      result += pr.qty * pr.price;
+    });
+
+    return `${result} $`;
+  }
   
 
   render() {
     const products = this.state.products.map(pr => {
       return (
-        <li key={pr.id} onClick={() => this.props.onDeleteCartProduct(pr.id)}>
-          {pr.name}: {pr.qty}  -{pr.price}
+        // <li key={pr.id} > 
+        //   {pr.name}: {pr.qty}  -{pr.price}
+        //   <button onClick={() => this.props.onDeleteCartProduct(pr.id)}>Remove</button>
+        // </li>
+
+        <li className="collection-item avatar" key={pr.id}>
+          
+         <div className="item-desc">
+          <Grid divided='vertically'>  
+            <Grid.Row columns={3}>
+              <Grid.Column>
+                <h1>{pr.name}</h1>
+              </Grid.Column>
+              <Grid.Column>
+                <p><b>Quantity: {pr.qty}</b></p>
+                <p><b>Price: {pr.price}$</b></p> 
+                <p><b>Total price: {pr.qty * pr.price}$</b></p>
+              </Grid.Column> 
+              <Grid.Column>
+                <button onClick={() => this.props.onDeleteCartProduct(pr.id)} >Remove</button>
+              </Grid.Column> 
+              </Grid.Row> 
+              </Grid>
+              <hr/>
+          </div>
+
         </li>
+        
       );
     });
+   
 
     return (
       <div>
         <h2>My Cart</h2>
 
         <ul>{products}</ul>
-        <button onClick={this.cancelHandler}>Cancel</button>
-        <button onClick={this.continueHandler}>Continue</button>
+        <div>
+              <Button size='big' color='teal'>TOTAL:{this.getTotal()} </Button>
+          </div>
+          <br/>
+
+        <Button onClick={this.cancelHandler}>Cancel</Button>
+        <Button onClick={this.continueHandler}>Continue</Button>
       </div>
     );
   }
